@@ -2,13 +2,13 @@ use strict;
 use LWP::Simple;
 use HTML::TreeBuilder;
 use Encode;
-use encoding 'utf8';
-binmode(STDERR,':raw :encoding(utf8)');
+use encoding 'shiftjis';
+binmode(STDERR,':raw :encoding(sshiftjis)');
 
 my $url = 'http://www.oreilly.co.jp/catalog/';
 
 my $page = get($url) or die $!;
-$page = decode('utf8',$page);
+$page = decode('shiftjis',$page);
 
 my $p = HTML::TreeBuilder->new_from_content($page);
 
@@ -20,4 +20,7 @@ my @links = $p->look_down(
 my @rows = map{$_->parent->parent}@links;
 
 use Data::Dumper;
-print Dumper @rows;
+print Dumper @links;
+
+
+

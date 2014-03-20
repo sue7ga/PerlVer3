@@ -1,0 +1,9 @@
+use strict;
+use warnings;
+
+my @tarfiles = glob("*.tar.gz");
+
+foreach $file(@tarfiles){
+ unlink $file;
+}
+
